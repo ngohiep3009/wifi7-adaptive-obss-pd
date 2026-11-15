@@ -1,0 +1,23 @@
+# ns-3 build files
+build/
+cmake-cache/
+CMakeCache.txt
+
+# Simulation output
+*.pcap
+*.tr
+*.xml
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Editor files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+

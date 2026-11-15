@@ -33,6 +33,11 @@ ObssPdResetCallback(uint8_t bssColor,
 }
 int main(int argc, char* argv[])
 {
+    double obssPd = -72.0;
+
+    CommandLine cmd(__FILE__);
+    cmd.AddValue("obssPd", "OBSS/PD threshold in dBm", obssPd);
+    cmd.Parse(argc, argv);
     // =====================================================
     // 1. CREATE NODES
     // =====================================================
@@ -54,9 +59,9 @@ int main(int argc, char* argv[])
 
     wifi.SetStandard(WIFI_STANDARD_80211be);
 
-    wifi.SetObssPdAlgorithm(
+        wifi.SetObssPdAlgorithm(
         "ns3::ConstantObssPdAlgorithm",
-        "ObssPdLevel", DoubleValue(-82.0));
+        "ObssPdLevel", DoubleValue(obssPd));
 
     WifiMacHelper mac;
 
@@ -280,7 +285,7 @@ ConnectObssPdTrace(staDevices2);
 
     // AP positions
     positions->Add(Vector(0, 0, 0));
-    positions->Add(Vector(15, 0, 0));
+    positions->Add(Vector(35, 0, 0));
 
     // BSS 1 stations
     positions->Add(Vector(2, 0, 0));
@@ -288,9 +293,9 @@ ConnectObssPdTrace(staDevices2);
     positions->Add(Vector(7, -2, 0));
 
     // BSS 2 stations
-    positions->Add(Vector(13, 0, 0));
-    positions->Add(Vector(18, 3, 0));
-    positions->Add(Vector(22, -2, 0));
+    positions->Add(Vector(33, 0, 0));
+    positions->Add(Vector(38, 3, 0));
+    positions->Add(Vector(42, -2, 0));
 
     mobility.SetPositionAllocator(positions);
 
